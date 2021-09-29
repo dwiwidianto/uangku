@@ -1,38 +1,58 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
-import EditIncome from './EditIncome';
-import ViewIncome from './ViewIncome';
 
 const AddIncomeForm = () => {
-     const { income, dispatch } = useContext(AppContext);
-     const [isEditing, setIsEditing] = useState(false);
+     const { dispatch } = useContext(AppContext);
 
-     const handleEditClick = () => {
-          setIsEditing(true);
-     };
+     const [name, setName] = useState('');
+     const [cost, setCost] = useState('');
 
-     const handleSaveClick = (value) => {
+     const onSubmit = (event) => {
+          event.preventDefault();
+
+          const income = {
+               name: name,
+               cost: parseInt(cost),
+          };
+
+
           dispatch({
                type: 'ADD_INCOME',
-               payload: value,
+               payload: income,
           });
-          setIsEditing(false);
      };
-
      return (
-          <div class="alert alert-success p-3 d-flex align-items-center justify-content-between">
-               {isEditing ? (
-                    <EditIncome
-                         handleSaveClick={handleSaveClick}
-                         income={income}
-                    />
-               ) : (
-                    <ViewIncome
-                         handleEditClick={handleEditClick}
-                         income={income}
-                    />
-               )}
-          </div>
+          <form onSubmit={onSubmit}>
+               <div className="row">
+                    <div className="col-sm">
+                         <label for="name">Name</label>
+                         <input
+                              required="required"
+                              type="text"
+                              className="form-control"
+                              id="name"
+                              value={name}
+                              onChange={(event) => setName(event.target.value)}
+                         ></input>
+                    </div>
+                    <div className="col-sm">
+                         <label for="cost">Cost</label>
+                         <input
+                              required="required"
+                              type="text"
+                              className="form-control"
+                              id="cost"
+                              value={cost}
+                              onChange={(event) => setCost(event.target.value)}
+                         ></input>
+                    </div>
+                    <div className="col-sm">
+                         <button type="submit" className="btn btn-primary mt-3">
+                              Save
+                         </button>
+                    </div>
+               </div>
+          </form>
      );
 };
 

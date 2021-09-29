@@ -1,21 +1,22 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Sisa = () => {
-    const { expenses, income } = useContext(AppContext)
+     const { expenses, incomes } = useContext(AppContext);
 
-    const totalExpenses = expenses.reduce((total, item) => {
-        return (total = total + item.cost)
-    }, 0)
-    
-    return (
-        <>
-            <div className='alert alert-warning'>
-                <span> Sisa Tabungan: Rp. {income - totalExpenses}</span>
-
-            </div>
-        </>
-    );
+     const totalExpense = expenses.reduce((total, item) => {
+          return (total += item.cost);
+     }, 0);
+     const totalIncome = incomes.reduce((total, item)=> {
+         return (total += item.cost);
+     }, 0)
+     return (
+          <>
+               <div className="alert alert-warning">
+                    <span> Sisa Tabungan: Rp. {totalIncome - totalExpense }</span>
+               </div>
+          </>
+     );
 };
 
-export default Sisa
+export default Sisa;

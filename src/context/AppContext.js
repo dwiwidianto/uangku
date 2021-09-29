@@ -1,15 +1,15 @@
-import { createContext, useReducer } from 'react';
-// import { gql, useQuery } from '@apollo/client';
+import { createContext, useReducer, useState, useEffect } from 'react';
+import { gql, useQuery } from '@apollo/client';
 
-// const GetData = gql`
-//      query MyQuery {
-//           uangku {
-//                cost
-//                name
-//                id
-//           }
-//      }
-// `;
+const GetData = gql`
+     query MyQuery {
+          uangku {
+               cost
+               name
+               id
+          }
+     }
+`;
 
 const AppReducer = (state, action) => {
      switch (action.type) {
@@ -21,32 +21,32 @@ const AppReducer = (state, action) => {
           case 'ADD_INCOME':
                return {
                     ...state,
-                    income: action.payload,
+                    incomes: [...state.incomes, action.payload],
                };
           default:
                return state;
      }
 };
 
-const initialState = {
-     income: 2000,
-     expenses: [
-          { id: 12, name: 'Beli Makan', cost: 10 },
-     ],
-};
-
 export const AppContext = createContext();
 
-
-
-
 export const AppProvider = (props) => {
-     const [state, dispatch] = useReducer(AppReducer, initialState);
+     const [transaksi, setTransaksi] = useState([]);
+     const { data } = useQuery(GetData);
+
+     
+
+     const initialState = {
+          incomes: [],
+          expenses: [],
+     };
+
+     const [state, dispatch] = useReducer(AppReducer, initialState, data);
 
      return (
           <AppContext.Provider
                value={{
-                    income: state.income,
+                    incomes: state.incomes,
                     expenses: state.expenses,
                     dispatch,
                }}
