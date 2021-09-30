@@ -1,15 +1,4 @@
 import { createContext, useReducer, useState, useEffect } from 'react';
-import { gql, useQuery } from '@apollo/client';
-
-const GetData = gql`
-     query MyQuery {
-          uangku {
-               cost
-               name
-               id
-          }
-     }
-`;
 
 const AppReducer = (state, action) => {
      switch (action.type) {
@@ -23,6 +12,16 @@ const AppReducer = (state, action) => {
                     ...state,
                     incomes: [...state.incomes, action.payload],
                };
+          case 'SET_EXPENSE':
+               const { expense } = action.payload;
+               const totalExpense = expense.reduce((total, item) => {
+                    return (total += item.cost);
+               }, 0);
+               return {
+                    ...state,
+                    expenses: action.payload.expense,
+                    totalExpense: totalExpense,
+               };
           default:
                return state;
      }
@@ -31,23 +30,23 @@ const AppReducer = (state, action) => {
 export const AppContext = createContext();
 
 export const AppProvider = (props) => {
-     const [transaksi, setTransaksi] = useState([]);
-     const { data } = useQuery(GetData);
-
-     
+     // const [toggleUpdate, setToggleUpdate] = useState(false);
 
      const initialState = {
           incomes: [],
           expenses: [],
+          totalExpense: 0,
+          totalIncome: 0,
      };
 
-     const [state, dispatch] = useReducer(AppReducer, initialState, data);
-
+     const [state, dispatch] = useReducer(AppReducer, initialState);
      return (
           <AppContext.Provider
                value={{
                     incomes: state.incomes,
                     expenses: state.expenses,
+                    totalExpense: state.totalExpense,
+                    totalIncome: state.totalIncome,
                     dispatch,
                }}
           >
