@@ -2,16 +2,24 @@ import { createContext, useReducer, useState, useEffect } from 'react';
 
 const AppReducer = (state, action) => {
      switch (action.type) {
-          case 'ADD_EXPENSE':
-               return {
-                    ...state,
-                    expenses: [...state.expenses, action.payload],
-               };
-          case 'ADD_INCOME':
-               return {
-                    ...state,
-                    incomes: [...state.incomes, action.payload],
-               };
+          // case 'ADD_EXPENSE':
+          //      return {
+          //           ...state,
+          //           expenses: [...state.expenses, action.payload],
+          //      };
+          // case 'ADD_INCOME':
+          //      return {
+          //           ...state,
+          //           incomes: [...state.incomes, action.payload],
+          //      };
+          // case 'DELETE_EXPENSE':
+          //      return {
+          //           ...state,
+          //           expense: state.expenses.filter(
+          //                (expense) => expense.id != action.payload
+          //           ),
+          //      };
+
           case 'SET_EXPENSE':
                const { expense } = action.payload;
                const totalExpense = expense.reduce((total, item) => {
@@ -21,6 +29,16 @@ const AppReducer = (state, action) => {
                     ...state,
                     expenses: action.payload.expense,
                     totalExpense: totalExpense,
+               };
+          case 'SET_INCOME':
+               const { income } = action.payload;
+               const totalIncome = income.reduce((total, item) => {
+                    return (total += item.cost);
+               }, 0);
+               return {
+                    ...state,
+                    incomes: action.payload.income,
+                    totalIncome: totalIncome,
                };
           default:
                return state;

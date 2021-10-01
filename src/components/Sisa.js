@@ -1,27 +1,29 @@
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import { gql, useQuery } from '@apollo/client';
+import useTableQuery from '../hooks/useTableQuery';
 
-const getExpenseQuery = gql`
-     query MyQuery {
-          expense {
-               cost
-               name
-               id
-          }
-     }
-`;
+
+
 const Sisa = () => {
      const { dispatch } = useContext(AppContext);
-     const { totalExpense } = useContext(AppContext);
+     const { totalExpense, totalIncome } = useContext(AppContext);
 
-     const { data } = useQuery(getExpenseQuery);
+     const { expense, income} = useTableQuery()
+
 
      useEffect(() => {
-          if (data) {
-               dispatch({ type: 'SET_EXPENSE', payload: data });
+          if (expense) {
+               dispatch({ type: 'SET_EXPENSE', payload: expense });
           }
-     }, [data]);
+     }, [expense]);
+
+     useEffect(() => {
+          if (income) {
+               dispatch({ type: 'SET_INCOME', payload: income });
+          }
+     }, [income]);
+
      // console.log(totalExpense);
      // const totalIncome = incomes.reduce((total, item)=> {
      //     return (total += item.cost);
@@ -29,7 +31,10 @@ const Sisa = () => {
      return (
           <>
                <div className="alert alert-warning">
-                    <span> Sisa Tabungan: Rp. {1000 - totalExpense }</span>
+                    <span>
+                         {' '}
+                         Sisa Tabungan: Rp. {totalIncome - totalExpense}
+                    </span>
                </div>
           </>
      );

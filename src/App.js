@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 /* Import Componenets */
 import { AppProvider } from './context/AppContext';
 import Sisa from './components/Sisa';
-import SideBar from './components/SideBar/Sidebar';
+import SideBar from './components/SideBar/Sidebar'; 
 /* Expense */
 import AddExpenseForm from './components/Expense/AddExpenseForm';
 import ExpenseList from './components/Expense/ExpenseList';
@@ -16,12 +16,18 @@ import AddIncomeForm from './components/Income/AddIncomeForm';
 import IncomeList from './components/Income/IncomeList';
 import IncomeTotal from './components/Income/IncomeTotal';
 
+import Chart from './components/Chart/BarChart'
+
 const App = () => {
      return (
           <Router>
                <SideBar />
                <AppProvider>
                     <Switch>
+                         <Route path="/dashboard">
+
+                         <Chart />
+                         </Route>
                          <Route path="/expense">
                               <div className="container">
                                    <div className="row mt-3">

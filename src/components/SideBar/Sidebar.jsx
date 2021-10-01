@@ -5,9 +5,9 @@ const Sidebar = () => {
      return (
           <>
                <Route>
+                    <Link to="/dashboard"> Dashboard </Link>
                     <Link to="/expense">Expense </Link>
                     <Link to="/income">Income </Link>
-
                </Route>
           </>
      );

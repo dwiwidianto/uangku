@@ -1,28 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { AppContext } from '../../context/AppContext';
+import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { gql, useMutation, useQuery } from '@apollo/client';
+import useTableInsert from '../../hooks/useTableInsert';
 
 const AddExpenseForm = () => {
-     const insertExpenseQuery = gql`
-          mutation MyMutation($object: expense_insert_input!) {
-               insert_expense_one(object: $object) {
-                    id
-               }
-          }
-     `;
-     const getExpenseQuery = gql`
-          query MyQuery {
-               expense {
-                    cost
-                    name
-                    id
-               }
-          }
-     `;
-     const [insertExpense] = useMutation(insertExpenseQuery, {
-          refetchQueries: [getExpenseQuery],
-     });
+     const { insertExpense } = useTableInsert();
+
      function validateRequired(value) {
           let error;
           if (!value) {
@@ -45,6 +27,7 @@ const AddExpenseForm = () => {
                initialValues={{
                     name: '',
                     cost: 0,
+                    date: '',
                }}
                onSubmit={(values, actions) => {
                     insertExpense({ variables: { object: values } });
@@ -66,6 +49,19 @@ const AddExpenseForm = () => {
                                    />
                                    {errors.name && touched.name && (
                                         <div>{errors.name}</div>
+                                   )}
+                              </div>
+                              <div className="col-sm">
+                                   <label htmlFor="date">Date</label>
+                                   <Field
+                                        // dateFormat="MM d, yyyy"
+                                        className="form-control"
+                                        name="date"
+                                        required="required"
+                                        type="date"
+                                   />
+                                   {errors.date && touched.date && (
+                                        <div>{errors.date}</div>
                                    )}
                               </div>
                               <div className="col-sm">

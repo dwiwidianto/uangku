@@ -4,7 +4,6 @@ import { AppContext } from '../../context/AppContext';
 
 const ExpenseList = () => {
      const { expenses } = useContext(AppContext);
-
      let list;
      if (expenses) {
           list = expenses.map((expense) => (
@@ -13,6 +12,7 @@ const ExpenseList = () => {
                     id={expense.id}
                     name={expense.name}
                     cost={expense.cost}
+                    date={expense.date}
                />
           ));
      }
