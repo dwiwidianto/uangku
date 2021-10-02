@@ -8,7 +8,6 @@ import useTableQuery from '../hooks/useTableQuery';
 const Sisa = () => {
      const { dispatch } = useContext(AppContext);
      const { totalExpense, totalIncome } = useContext(AppContext);
-
      const { expense, income} = useTableQuery()
 
 
