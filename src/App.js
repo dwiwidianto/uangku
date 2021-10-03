@@ -1,11 +1,10 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 /* Import Componenets */
 import { AppProvider } from './context/AppContext';
 import Sisa from './components/Sisa';
-import SideBar from './components/SideBar/Sidebar'; 
 /* Expense */
 import AddExpenseForm from './components/Expense/AddExpenseForm';
 import ExpenseList from './components/Expense/ExpenseList';
@@ -16,64 +15,87 @@ import AddIncomeForm from './components/Income/AddIncomeForm';
 import IncomeList from './components/Income/IncomeList';
 import IncomeTotal from './components/Income/IncomeTotal';
 
-import Chart from './components/Chart/BarChart'
+import Chart from './components/Chart/BarChart';
+import Side from './components/SideBar/Sidebar';
 
 const App = () => {
      return (
           <Router>
-               <SideBar />
-               <AppProvider>
-                    <Switch>
-                         <Route path="/dashboard">
-
-                         <Chart />
-                         </Route>
-                         <Route path="/expense">
-                              <div className="container">
-                                   <div className="row mt-3">
-                                        <div className="col-sm">
-                                             <Sisa />
-                                             <ExpenseTotal />
-                                        </div>
-                                        <h3 className="mt-3">Add Expenses</h3>
-                                        <div className="row mt-3">
-                                             <div className="col-sm">
-                                                  <AddExpenseForm />
+               <Side />
+               <div className="container">
+                    <AppProvider>
+                         <Switch>
+                              <Route path="/dashboard">
+                                   <Chart />
+                              </Route>
+                         </Switch>
+                         <Switch>
+                              <Route path="/expense">
+                                   <div className="container bg-primary">
+                                        <div className="row mt-5">
+                                             <div className="col-sm-4">
+                                                  <IncomeTotal />
+                                             </div>
+                                             <div className="col-sm-4">
+                                                  <Sisa />
+                                             </div>
+                                             <div className="col-sm-4">
+                                                  <ExpenseTotal />
                                              </div>
                                         </div>
-                                        <h3 className="mt-3">Expense</h3>
-                                        <div className="row mt-3">
-                                             <div className="col-sm">
-                                                  <ExpenseList />
+                                        <div className="row mt-3 ">
+                                             <h3 className="mt-3">
+                                                  Add Expenses
+                                             </h3>
+                                             <div className="row mt-3 ">
+                                                  <div className="col-sm">
+                                                       <AddExpenseForm />
+                                                  </div>
                                              </div>
-                                        </div>
-                                   </div>
-                              </div>
-                         </Route>
-                         <Route path="/income">
-                              <div className="container">
-                                   <div className="row mt-3">
-                                        <div className="col-sm">
-                                             <Sisa />
-                                             <IncomeTotal />
-                                        </div>
-                                        <h3 className="mt-3">Add Income</h3>
-                                        <div className="row mt-3">
-                                             <div className="col-sm">
-                                                  <AddIncomeForm />
-                                             </div>
-                                        </div>
-                                        <h3 className="mt-3">Income</h3>
-                                        <div className="row mt-3">
-                                             <div className="col-sm">
-                                                  <IncomeList />
+                                             <h3 className="mt-3">Expense</h3>
+                                             <div className="row mt-3">
+                                                  <div className="col-sm">
+                                                       <ExpenseList />
+                                                  </div>
                                              </div>
                                         </div>
                                    </div>
-                              </div>
-                         </Route>
-                    </Switch>
-               </AppProvider>
+                              </Route>
+                              <Route path="/income">
+                                   <div className="container bg-danger">
+                                        <div className="row mt-5 ">
+                                             <div className="col-sm-4 ">
+                                                  <IncomeTotal />
+                                             </div>
+                                             <div className="col-sm-4">
+                                                  <Sisa />
+                                             </div>
+                                             <div className="col-sm-4">
+                                                  <ExpenseTotal />
+                                             </div>
+                                        </div>
+                                        <div className="row mt-3">
+                                             <div className="col-sm"></div>
+                                             <h3 className="mt-3">
+                                                  Add Income
+                                             </h3>
+                                             <div className="row mt-3">
+                                                  <div className="col-sm">
+                                                       <AddIncomeForm />
+                                                  </div>
+                                             </div>
+                                             <h3 className="mt-3">Income</h3>
+                                             <div className="row mt-3">
+                                                  <div className="col-sm">
+                                                       <IncomeList />
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </Route>
+                         </Switch>
+                    </AppProvider>
+               </div>
           </Router>
      );
 };

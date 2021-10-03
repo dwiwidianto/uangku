@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState, useEffect } from 'react';
+import { createContext, useReducer } from 'react';
 
 const AppReducer = (state, action) => {
      switch (action.type) {

@@ -1,15 +1,27 @@
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
-import { gql, useQuery } from '@apollo/client';
 import useTableQuery from '../hooks/useTableQuery';
+import styled from 'styled-components';
+import { CardSisa } from 'components/Style/CardStyle';
 
 
+const Title = styled.p`
+     grid-row: 2/3;
+     font-size: 30px;
+     font-weight: bold;
+     color: white;
+`;
+const Value = styled.p`
+     grid-row: 3/4;
+     font-size: 25px;
+     font-weight: bold;
+     color: white;
+`;
 
 const Sisa = () => {
      const { dispatch } = useContext(AppContext);
      const { totalExpense, totalIncome } = useContext(AppContext);
-     const { expense, income} = useTableQuery()
-
+     const { expense, income } = useTableQuery();
 
      useEffect(() => {
           if (expense) {
@@ -29,12 +41,10 @@ const Sisa = () => {
      // }, 0)
      return (
           <>
-               <div className="alert alert-warning">
-                    <span>
-                         {' '}
-                         Sisa Tabungan: Rp. {totalIncome - totalExpense}
-                    </span>
-               </div>
+               <CardSisa>
+                    <Title>Tabungan :</Title>
+                    <Value>Rp. {totalIncome - totalExpense}</Value>
+               </CardSisa>
           </>
      );
 };

@@ -1,5 +1,20 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
+import styled from 'styled-components';
+import { CardPemasukan } from 'components/Style/CardStyle';
+
+const Title = styled.p`
+     grid-row: 2/3;
+     font-size: 30px;
+     font-weight: bold;
+     color: white;
+`;
+const Value = styled.p`
+     grid-row: 3/4;
+     font-size: 25px;
+     font-weight: bold;
+     color: white;
+`;
 
 const IncomeTotal = () => {
      const { totalIncome } = useContext(AppContext);
@@ -8,9 +23,10 @@ const IncomeTotal = () => {
      // }, 0);
      return (
           <>
-               <div className="alert alert-success">
-                    <span>Pemasukan: Rp. {totalIncome}</span>
-               </div>
+               <CardPemasukan>
+                    <Title>Pemasukan: </Title>
+                    <Value>Rp. {totalIncome}</Value>
+               </CardPemasukan>
           </>
      );
 };

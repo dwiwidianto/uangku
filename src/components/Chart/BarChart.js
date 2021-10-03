@@ -1,7 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import {
-     PieChart,
-     Pie,
      Tooltip,
      BarChart,
      XAxis,
@@ -15,6 +13,7 @@ import { useQuery } from '@apollo/client';
 
 
 const Chart = () => {
+
      const { data: expense } = useQuery(getExpenseQuery);
      const { data: income } = useQuery(getIncomeQuery);
 
@@ -35,14 +34,14 @@ const Chart = () => {
                          />
                          <Tooltip />
                     </PieChart> */}
-                    <BarChart width={730} height={250} data={expense && expense.expense}>
+                    <BarChart width={730} height={250} data={[expense && expense.expense][income && income.income]}>
                          <CartesianGrid strokeDasharray="3 3" />
                          <XAxis dataKey="" />
                          <YAxis />
                          <Tooltip />
                          <Legend />
                          <Bar dataKey="cost" fill="#8884d8" />
-                         <Bar dataKey="" fill="#82ca9d" />
+                         <Bar dataKey="name" fill="#82ca9d" />
                     </BarChart>
                </div>
           </div>
