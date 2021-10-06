@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
 import useTableQuery from '../hooks/useTableQuery';
 import styled from 'styled-components';
-import { CardSisa } from 'components/Style/CardStyle';
+import { CardSisa } from '../components/Style/CardStyle';
 
 
 const Title = styled.p`

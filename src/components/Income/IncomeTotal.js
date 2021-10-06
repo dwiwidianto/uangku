@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import styled from 'styled-components';
-import { CardPemasukan } from 'components/Style/CardStyle';
+import { CardPemasukan } from '../../components/Style/CardStyle';
 
 const Title = styled.p`
      grid-row: 2/3;
