@@ -15,3 +15,20 @@ export const insertExpenseQuery = gql`
           }
      }
 `;
+
+export const DeleteIncome = gql`
+     mutation DeleteIncome($id: Int!) {
+          delete_income_by_pk(id: $id) {
+               id
+          }
+     }
+`;
+
+export const insertIncomeQuery = gql`
+     mutation MyMutation($object: income_insert_input!) {
+          insert_income_one(object: $object) {
+               id
+          }
+     }
+`;
+

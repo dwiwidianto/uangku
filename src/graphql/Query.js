@@ -17,6 +17,7 @@ export const getIncomeQuery = gql`
                id
                name
                cost
+               date
           }
      }
 `;

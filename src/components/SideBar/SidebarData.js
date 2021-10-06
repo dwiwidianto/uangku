@@ -1,22 +1,21 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
-import * as RiIcons from 'react-icons/ri';
 
 export const SidebarData = [
   
   {
     title: 'Dashborard',
     path: '/dashboard',
-    icon: <FaIcons.FaCartPlus />
+    icon: <IoIcons.IoMdPeople />
+
   },
   {
-    title: 'Products',
+    title: 'Expense',
     path: '/expense',
-    icon: <FaIcons.FaCartPlus />
+    icon: <IoIcons.IoMdPeople />
+
   },  {
-    title: 'Team',
+    title: 'Income',
     path: '/income',
     icon: <IoIcons.IoMdPeople />
   }

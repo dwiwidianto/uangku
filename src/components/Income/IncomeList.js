@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import IncomeItem from './IncomeItem';
 import { AppContext } from '../../context/AppContext';
 
@@ -14,6 +14,8 @@ const IncomeList = () => {
                     id={income.id}
                     name={income.name}
                     cost={income.cost}
+                    date={income.date}
+
                />
           ));
      }

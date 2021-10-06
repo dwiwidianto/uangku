@@ -34,11 +34,6 @@ const Sisa = () => {
                dispatch({ type: 'SET_INCOME', payload: income });
           }
      }, [income]);
-
-     // console.log(totalExpense);
-     // const totalIncome = incomes.reduce((total, item)=> {
-     //     return (total += item.cost);
-     // }, 0)
      return (
           <>
                <CardSisa>

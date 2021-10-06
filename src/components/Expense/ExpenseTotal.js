@@ -19,10 +19,6 @@ const Value = styled.p`
 const ExpenseTotal = () => {
      const { totalExpense } = useContext(AppContext);
 
-     // const totalExpense = expenses.reduce((total, item) => {
-     //      return((total += item.cost));
-     // }, 0);
-
      return (
           <>
                <CardPengeluaran>

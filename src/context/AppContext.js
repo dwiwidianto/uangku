@@ -2,24 +2,6 @@ import { createContext, useReducer } from 'react';
 
 const AppReducer = (state, action) => {
      switch (action.type) {
-          // case 'ADD_EXPENSE':
-          //      return {
-          //           ...state,
-          //           expenses: [...state.expenses, action.payload],
-          //      };
-          // case 'ADD_INCOME':
-          //      return {
-          //           ...state,
-          //           incomes: [...state.incomes, action.payload],
-          //      };
-          // case 'DELETE_EXPENSE':
-          //      return {
-          //           ...state,
-          //           expense: state.expenses.filter(
-          //                (expense) => expense.id != action.payload
-          //           ),
-          //      };
-
           case 'SET_EXPENSE':
                const { expense } = action.payload;
                const totalExpense = expense.reduce((total, item) => {
